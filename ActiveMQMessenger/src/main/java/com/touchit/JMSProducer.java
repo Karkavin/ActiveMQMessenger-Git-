@@ -9,9 +9,9 @@ public class JMSProducer extends Thread {
     private ActiveMQConnectionFactory connectionFactory;
     private String message;
 
-    public JMSProducer(){
+    public JMSProducer(String url){
         System.out.println("JMSProducer() -> object created");
-        connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory = new ActiveMQConnectionFactory(url);
         this.message = "";
     }
 

@@ -6,14 +6,14 @@ import javax.jms.*;
 import javax.jms.Connection;
 
 public class JMSConsumer implements MessageListener{
-    private static final String QUEUE_NAME = "ActiveMQMessenger.in";
+    private static final String QUEUE_NAME = "activemqmessenger.in";
     private ActiveMQConnectionFactory connectionFactory;
     private Connection connection;
     private Session session;
 
-    public JMSConsumer(){
+    public JMSConsumer(String url){
         System.out.println("JMSConsumer() -> object created");
-        connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory = new ActiveMQConnectionFactory(url);
     }
 
     public void initialise(){
