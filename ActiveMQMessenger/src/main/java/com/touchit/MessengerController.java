@@ -1,18 +1,19 @@
 package com.touchit;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import com.touchit.JMSProducer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MessengerController {
-    @RequestMapping(value = "/sendMessage.htm")
-    public void sendMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String url = "localhost:61616";
-        JMSProducer jmsProducer = new JMSProducer(url);
+
+    @RequestMapping("/sendMsg")
+    public @ResponseBody String sendMessage() throws Exception {
+        JMSProducer jmsProducer = new JMSProducer();
         jmsProducer.addMessage("Hello world!");
         jmsProducer.start();
+
+        return "Message successfully sent!";
     }
 }

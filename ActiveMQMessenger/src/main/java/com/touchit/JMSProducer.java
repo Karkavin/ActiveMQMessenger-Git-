@@ -1,6 +1,7 @@
 package com.touchit;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.jms.*;
 
@@ -9,9 +10,9 @@ public class JMSProducer extends Thread {
     private ActiveMQConnectionFactory connectionFactory;
     private String message;
 
-    public JMSProducer(String url){
+    public JMSProducer(){
         System.out.println("JMSProducer() -> object created");
-        connectionFactory = new ActiveMQConnectionFactory(url);
+        connectionFactory = new ActiveMQConnectionFactory();
         this.message = "";
     }
 

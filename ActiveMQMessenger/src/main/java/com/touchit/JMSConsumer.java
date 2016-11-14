@@ -1,19 +1,20 @@
 package com.touchit;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.jms.*;
 import javax.jms.Connection;
 
 public class JMSConsumer implements MessageListener{
-    private static final String QUEUE_NAME = "activemqmessenger.in";
+    private static final String QUEUE_NAME = "ActiveMQMessenger.in";
     private ActiveMQConnectionFactory connectionFactory;
     private Connection connection;
     private Session session;
 
-    public JMSConsumer(String url){
+    public JMSConsumer(){
         System.out.println("JMSConsumer() -> object created");
-        connectionFactory = new ActiveMQConnectionFactory(url);
+        connectionFactory = new ActiveMQConnectionFactory();
     }
 
     public void initialise(){
