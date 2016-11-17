@@ -1,19 +1,29 @@
 package com.touchit;
 
-import com.touchit.JMSProducer;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MessengerController {
 
-    @RequestMapping("/sendMsg")
-    public @ResponseBody String sendMessage() throws Exception {
+    @RequestMapping("/hello")
+    public String hello() {
+        return "Hello!";
+    }
+
+    @RequestMapping("/send")
+    public String helloW() {
+        return "Please, enter correct: ~/send/{message}";
+    }
+
+    @RequestMapping("/send/{message}")
+    public @ResponseBody String send(@PathVariable String message) throws Exception {
         JMSProducer jmsProducer = new JMSProducer();
-        jmsProducer.addMessage("Hello world!");
+        jmsProducer.addMessage(message);
         jmsProducer.start();
 
-        return "Message successfully sent!";
+        return "Message " + message + " successfully sent!";
     }
 }
